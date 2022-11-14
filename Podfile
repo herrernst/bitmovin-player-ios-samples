@@ -86,6 +86,7 @@ end
 target 'BackgroundPlayback' do
     project 'BackgroundPlayback/BackgroundPlayback.xcodeproj'
     bitmovin_player
+    pod 'GoogleAds-IMA-iOS-SDK', '3.14.5'
 end
 
 target 'BasicFullscreenHandling' do

@@ -32,6 +32,19 @@ final class ViewController: UIViewController {
         // Create player configuration
         let config = PlayerConfig()
 
+        let audioAdUrl: URL = URL(string: "https://rawcdn.githack.com/InteractiveAdvertisingBureau/VAST_Samples/e95a1f1d812f1cd697242dc7574d0a21c05e5bae/VAST%204.1%20Samples/Audio_DAAST_Sample.xml")!
+        let audioAdSource = AdSource(tag: audioAdUrl, ofType: .ima)
+        let audioAdItem = AdItem(adSources: [audioAdSource], atPosition: "pre")
+        let audioAdConfig = AdvertisingConfig()
+        audioAdConfig.schedule = [audioAdItem]
+        
+        audioAdConfig.beforeInitialization = { (settings: ImaSettings) in
+            settings.enableBackgroundPlayback = true
+            dump(settings)
+        }
+
+        config.advertisingConfig = audioAdConfig
+        
         // Enable background playback for the BitmovinPlayer
         config.playbackConfig.isBackgroundPlaybackEnabled = true
 
